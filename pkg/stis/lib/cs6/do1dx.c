@@ -437,7 +437,7 @@ StisInfo6 *sts    i: calibration switches and info
 	    /* Bump output extension number. */
 	    o_ext++;
 
-	    /* Initalize I/O areas. */
+	    /* Initialize I/O areas. */
 	    initSingleGroup (&in);
 	    initSingleGroup (&outw);
 	    initSingleGroup (&holdraw);
@@ -796,7 +796,7 @@ StisInfo6 *sts    i: calibration switches and info
                    thus we have to read it here and not as a global parameter.
                    And (ii) to get the rectified image size in the A2 direction
                    built by calstis7 for the current spectral order. This
-                   is used by the scaterred light correction algorithm.
+                   is used by the scattered light correction algorithm.
                    If no matching row exists, skip silently.
 
                    This code is being called only if scattered light
@@ -1199,6 +1199,14 @@ StisInfo6 *sts    i: calibration switches and info
 	            FreeCoord6 (&coord_o);
 	        }
 
+			/* Print some info for debugging (temporary)*/
+			// printf("row_contents.back[0] = %f\n", row_contents.back[0]);
+			// printf("row_contents.back[1] = %f\n", row_contents.back[1]);
+			// printf("Now as double\n");
+			// printf("row_contents.back[0] = %lf\n", row_contents.back[0]);
+			// printf("row_contents.back[1] = %lf\n", row_contents.back[1]);
+			// printf("\n");
+
 	        /* Extract spectrum, or build profile. */
 	        if ((status = X1DSpec(sts, trace_y, extract_o, extrsize,
                                       &in, &outw, &ssgx, &ssgy, &inta,
@@ -1216,6 +1224,15 @@ StisInfo6 *sts    i: calibration switches and info
 	            if ((status = Lee (sts, &row_contents)))
 	                return (status);
 	        }
+
+			/* Print some info for debugging (temporary)*/
+			// printf("After X1DSpec, background smoothing and filtering:\n");
+			// printf("row_contents.back[0] = %f\n", row_contents.back[0]);
+			// printf("row_contents.back[1] = %f\n", row_contents.back[1]);
+			// printf("Now as double\n");
+			// printf("row_contents.back[0] = %lf\n", row_contents.back[0]);
+			// printf("row_contents.back[1] = %lf\n", row_contents.back[1]);
+			// printf("\n");
 
 	        /* Update trailer file and header. */
 	        if (sts->backcorr == PERFORM || sts->optimal) {

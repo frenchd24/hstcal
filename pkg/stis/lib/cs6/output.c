@@ -203,6 +203,14 @@ TblDesc table           i:  table descriptor
 RowContents row         i:  row contents
 int *row_number         io: row where to write in output table
 */
+        /* Print some info for debugging (temporary)*/
+        printf("Differences from output.c: \n");
+        printf("Background of row[0] = %f\n", row->back[0]);
+        printf("Background of row[1] = %f\n", row->back[1]);
+        printf("Now as double\n");
+        printf("Background of row[0] = %lf\n", row->back[0]);
+        printf("Background of row[1] = %lf\n", row->back[1]);
+        printf("\n");
 
         int i, count;
 
