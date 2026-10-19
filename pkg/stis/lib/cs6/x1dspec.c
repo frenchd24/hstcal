@@ -487,9 +487,14 @@ RowContents *row_cont  o:  output row arrays
                 }
                 net   = (float) (sumnet / wei);
                 error = err > 0.0 ? sqrt(err / wei) : 0.0;
-				printf("back values from line 486 in x1dspec.c: %f\n");
-				printf("back = %f\n", back);
-				printf("finished\n");
+
+				// print if ipx == 100
+				if (ipix == 100) {
+					printf("back values from line 486 in x1dspec.c: %f\n");
+					printf("back = %f\n", back);
+					printf("finished\n");
+				}
+
 
 	        row_cont->gross[ipix] = gross / sts->exptime;
                 row_cont->back[ipix]  = back / sts->exptime;
@@ -505,10 +510,12 @@ RowContents *row_cont  o:  output row arrays
 	        row_cont->net_error[ipix] = 0.0F;
 	    }
 
-		printf("back values from row_cont, line 502 in x1dspec.c: %f\n");
-		printf("row_cont->back[0] = %f\n", row_cont->back[0]);
-		printf("row_cont->back[1] = %f\n", row_cont->back[1]);
-		printf("finished\n");
+		if (ipix == 100) {
+			printf("back values from row_cont, line 502 in x1dspec.c: %f\n", row_cont->back[0]);
+			printf("row_cont->back[0] = %f\n", row_cont->back[0]);
+			printf("row_cont->back[1] = %f\n", row_cont->back[1]);
+			printf("finished\n");
+		}
 
 	    /* Resample and normalize profile. */
 
@@ -581,10 +588,10 @@ int debug;             i:  debug flag / pixel index
 	ComputeBack (sts, j, &back, &backvar, &backerr, debug);
 	*sumback += back * area;
 
-	printf("After computeBack on line 581 of x1dspec.c: \n");
-	printf("sizeof(back) = %zu bytes \n", sizeof(back));
-	printf("back = %f\n", back);
-	printf("Finished\n");
+	// printf("After computeBack on line 581 of x1dspec.c: \n");
+	// printf("sizeof(back) = %zu bytes \n", sizeof(back));
+	// printf("back = %f\n", back);
+	// printf("Finished\n");
 
 	/* If background smoothing will be done, set the error contribution
 	   of the background to zero.
