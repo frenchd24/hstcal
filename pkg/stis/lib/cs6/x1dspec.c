@@ -489,10 +489,11 @@ RowContents *row_cont  o:  output row arrays
                 error = err > 0.0 ? sqrt(err / wei) : 0.0;
 
 				// print if ipx == 100
-				if (ipix == 100) {
-					printf("back values from line 486 in x1dspec.c: %f\n");
-					printf("back = %f\n", back);
-					printf("finished\n");
+					if (ipix >= 100 && ipix <= 110) {
+						printf("ipix = %d\n", ipix);
+						printf("back values from line 486 in x1dspec.c: %f\n", back);
+						printf("back = %f\n", back);
+						printf("finished\n");
 				}
 
 
@@ -510,10 +511,11 @@ RowContents *row_cont  o:  output row arrays
 	        row_cont->net_error[ipix] = 0.0F;
 	    }
 
-		if (ipix == 100) {
-			printf("back values from row_cont, line 502 in x1dspec.c: %f\n", row_cont->back[0]);
-			printf("row_cont->back[0] = %f\n", row_cont->back[0]);
-			printf("row_cont->back[1] = %f\n", row_cont->back[1]);
+		if (ipix >= 100 && ipix <= 110) {
+			printf("ipix = %d\n", ipix);
+			printf("back values from row_cont, line 502 in x1dspec.c: %f\n", row_cont->back[ipix]);
+			printf("row_cont->back[%d] = %f\n", ipix, row_cont->back[ipix]);
+			printf("row_cont->back[100] = %f\n", row_cont->back[100]);
 			printf("finished\n");
 		}
 
