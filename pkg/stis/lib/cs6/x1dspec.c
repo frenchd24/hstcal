@@ -331,6 +331,12 @@ RowContents *row_cont  o:  output row arrays
                         iprofile[j] /= sum;
 
 	        /* Clean up pixels based on the expected profile. */
+			if (j == 1 && ipix >= 100 && ipix <= 110) {
+				printf("ipix = %d\n", ipix);
+				printf("profile values from line 502 in x1dspec.c: %f\n", iprofile[0]);
+				printf("ix1 and ix2 values: %d, %d\n", ix1, ix2);
+				printf("\n");
+			}
 
 	        CleanPixels (sts, in, ipix, j1, j2, iprofile, (int)ilow_end,
                              intens, outw, debug);
@@ -476,9 +482,17 @@ RowContents *row_cont  o:  output row arrays
 	    /* Store gross, net, background and flux normalization values. */
 	    row_cont->dq[ipix] = oDQ;
 	    if (wei > 0.0 && sts->exptime > 0.0) {
-                float gross, back, net, error;
+			float gross, back, net, error;
 
-                gross = (float) (sum / wei);
+			gross = (float) (sum / wei);
+			// print if ipx == 100
+			if (ipix >= 100 && ipix <= 110) {
+				printf("ipix = %d\n", ipix);
+				printf("gross values from line 481 in x1dspec.c: %f\n", gross);
+				printf("gross full precision = %.*f\n", 17, gross);
+				printf("\n");
+			}
+
 	        if (sts->optimal) {
                     back = (float) sumback;
                     sts->profile_rejf[ipix] = err > 0.0 ? sump/err: 0.0;
@@ -493,7 +507,7 @@ RowContents *row_cont  o:  output row arrays
 					printf("ipix = %d\n", ipix);
 					printf("back values from line 486 in x1dspec.c: %f\n", back);
 					printf("back full precision = %.*f\n", 17, back);
-					printf("finished\n");
+					printf("\n");
 				}
 
 
