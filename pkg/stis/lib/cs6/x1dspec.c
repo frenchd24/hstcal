@@ -331,11 +331,6 @@ RowContents *row_cont  o:  output row arrays
                         iprofile[j] /= sum;
 
 	        /* Clean up pixels based on the expected profile. */
-			if (j == 1 && ipix >= 100 && ipix <= 110) {
-				printf("ipix = %d\n", ipix);
-				printf("profile values from line 502 in x1dspec.c: %f\n", iprofile[0]);
-				printf("ix1 and ix2 values: %d, %d\n", ix1, ix2);
-				printf("\n");
 			}
 
 	        CleanPixels (sts, in, ipix, j1, j2, iprofile, (int)ilow_end,
