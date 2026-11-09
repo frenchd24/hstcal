@@ -331,7 +331,6 @@ RowContents *row_cont  o:  output row arrays
                         iprofile[j] /= sum;
 
 	        /* Clean up pixels based on the expected profile. */
-			}
 
 	        CleanPixels (sts, in, ipix, j1, j2, iprofile, (int)ilow_end,
                              intens, outw, debug);
