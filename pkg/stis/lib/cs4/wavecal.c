@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <math.h> // for trunc() to limit precision of shifts
 
 # include "c_iraf.h"
 # include "hstcal.h"
@@ -293,6 +294,18 @@ StisInfo4 *sts    i: calibration switches and info
 	    ScaleRef (sts, &w_shift, &s_shift);
 
 	    PrSwitch ("wavecorr", COMPLETE);
+
+		/* Limit their precision to 7 decimal places to remove architecture dependence */
+		printf("w_shift before = %lf \n",w_shift);
+		printf("s_shift before = %lf \n",s_shift);
+
+		double scale = pow(10.0, 7);
+		w_shift = trunc(w_shift * scale) / scale;
+		s_shift = trunc(s_shift * scale) / scale;
+
+		printf("w_shift after = %lf \n",w_shift);
+		printf("s_shift after = %lf \n",s_shift);
+		printf("\n");
 
 	    /* Update current SCI extension header with the shift values. */
 	    if ((status = UpdateShift (sts, extver, w_shift, s_shift)))
