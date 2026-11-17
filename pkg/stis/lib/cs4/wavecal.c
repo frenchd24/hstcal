@@ -290,21 +290,30 @@ StisInfo4 *sts    i: calibration switches and info
 		s_shift = UNDEFINED_SHIFT;
 	    }
 
+		printf("w_shift before scaling = %.17g \n",w_shift);
+		printf("s_shift before scaling = %.17g \n",s_shift);
+		printf("w_shift before scaling = %.12E \n",w_shift);
+		printf("s_shift before scaling = %.12E \n",s_shift);
+
 	    /* Scale the shifts to reference pixel size. */
 	    ScaleRef (sts, &w_shift, &s_shift);
 
 	    PrSwitch ("wavecorr", COMPLETE);
 
 		/* Limit their precision to 7 decimal places to remove architecture dependence */
-		printf("w_shift before = %lf \n",w_shift);
-		printf("s_shift before = %lf \n",s_shift);
+		printf("w_shift before = %.17g \n",w_shift);
+		printf("s_shift before = %.17g \n",s_shift);
+		printf("w_shift before = %.12E \n",w_shift);
+		printf("s_shift before = %.12E \n",s_shift);
 
-		double scale = pow(10.0, 7);
+		double scale = pow(10.0, 6);
 		w_shift = trunc(w_shift * scale) / scale;
 		s_shift = trunc(s_shift * scale) / scale;
 
-		printf("w_shift after = %lf \n",w_shift);
-		printf("s_shift after = %lf \n",s_shift);
+		printf("w_shift after = %.17g \n",w_shift);
+		printf("s_shift after = %.17g \n",s_shift);
+		printf("w_shift after = %.12E \n",w_shift);
+		printf("s_shift after = %.12E \n",s_shift);
 		printf("\n");
 
 	    /* Update current SCI extension header with the shift values. */
