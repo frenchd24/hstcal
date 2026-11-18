@@ -306,7 +306,7 @@ StisInfo4 *sts    i: calibration switches and info
 		printf("w_shift before = %.12E \n",w_shift);
 		printf("s_shift before = %.12E \n",s_shift);
 
-		double scale = pow(10.0, 6);
+		double scale = pow(10.0, 9);
 		w_shift = trunc(w_shift * scale) / scale;
 		s_shift = trunc(s_shift * scale) / scale;
 
